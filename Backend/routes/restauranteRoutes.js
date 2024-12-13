@@ -16,8 +16,8 @@ const restauranteController = require("../controllers/restauranteController") //
     // Buscar todos os pedidos
     router.get("/restaurante/pedidos", restauranteController.getAllPedidos)
 
-    // // Buscar todos os cadastros
-    // router.get("/restaurante/cadastros", restauranteController.getAllCadastros)
+    // Buscar todos os cadastros
+    router.get("/restaurante/cadastros", restauranteController.getAllCadastros)
 
 //.
 

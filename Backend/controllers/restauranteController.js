@@ -46,4 +46,15 @@ const restauranteModel = require("../models/restauranteModel") // Importa o mode
     })
   }
 
+  // All Cadastros
+  exports.getAllCadastros = (req, res) => {
+    restauranteModel.getAllCadastros((err, cadastros) => {
+      if (err) {
+        res.status(500).send("Erro ao buscar os cadastros") // Retorna um erro 500 se algo deu errado
+      } else {
+        res.json(cadastros) // Retorna os cadastros em formato JSON
+      }
+    })
+  }
+
 //.
