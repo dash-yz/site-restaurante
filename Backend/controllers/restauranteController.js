@@ -30,7 +30,18 @@ const restauranteModel = require("../models/restauranteModel") // Importa o mode
       if (err) {
         res.status(500).send("Erro ao buscar os funcionários") // Retorna um erro 500 se algo deu errado
       } else {
-        res.json(funcionarios) // Retorna os clientes em formato JSON
+        res.json(funcionarios) // Retorna os funcionários em formato JSON
+      }
+    })
+  }
+
+  // All Pedidos
+  exports.getAllPedidos = (req, res) => {
+    restauranteModel.getAllPedidos((err, pedidos) => {
+      if (err) {
+        res.status(500).send("Erro ao buscar os pedidos") // Retorna um erro 500 se algo deu errado
+      } else {
+        res.json(pedidos) // Retorna os pedidos em formato JSON
       }
     })
   }

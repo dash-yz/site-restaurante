@@ -27,7 +27,7 @@ const { Request, TYPES } = require("tedious"); // Importa as classes necessária
         })
       })
 
-      // Ao completar a consulta, retorna o array com todos os usuários
+      // Ao completar a consulta, retorna o array com todos os produtos
       request.on("requestCompleted", (rowCount) => {
         if (rowCount === 0) {
           callback(null, [])
@@ -68,7 +68,7 @@ const { Request, TYPES } = require("tedious"); // Importa as classes necessária
         })
       })
 
-      // Ao completar a consulta, retorna o array com todos os usuários
+      // Ao completar a consulta, retorna o array com todos os clientes
     request.on("requestCompleted", (rowCount) => {
       if (rowCount === 0) {
         callback(null, [])
@@ -108,7 +108,7 @@ const { Request, TYPES } = require("tedious"); // Importa as classes necessária
         })
       })
 
-      // Ao completar a consulta, retorna o array com todos os usuários
+      // Ao completar a consulta, retorna o array com todos os funcionários
     request.on("requestCompleted", (rowCount) => {
       if (rowCount === 0) {
         callback(null, [])
@@ -119,4 +119,43 @@ const { Request, TYPES } = require("tedious"); // Importa as classes necessária
     connection.execSql(request) // Executa a consulta
     })
   connection.connect() // Inicia a conexão
-}
+  }
+
+  // Todos os pedids
+  exports.getAllPedidos = (callback) => {
+    const connection = createConnection(); // Cria a conexão com o banco de dados
+    connection.on("connect", (err) => {
+      if (err) {
+        return callback(err, null) // Trata erros de conexão
+      }
+      const query = `SELECT * FROM pedidos` // SQL para buscar todos os pedidos
+      const request = new Request(query, (err) => {
+        if (err) {  
+          return callback(err, null) // Trata erros de execução da consulta
+        }
+      })
+
+      // Evento 'row' para capturar todas as linhas de resultados
+      const result = [] // Variável para armazenar os resultados
+      request.on("row", (columns) => {
+        result.push({
+          id: columns[0].value,
+          id_cliente: columns[1].value,
+          descricao: columns[2].value
+        })
+      })
+
+      // Ao completar a consulta, retorna o array com todos os pedidos
+    request.on("requestCompleted", (rowCount) => {
+      if (rowCount === 0) {
+        callback(null, [])
+      } else {
+        callback(null, result) // Retorna o array de resultados
+      }
+    })
+    connection.execSql(request) // Executa a consulta
+    })
+  connection.connect() // Inicia a conexão
+  }
+
+//.

@@ -13,6 +13,12 @@ const restauranteController = require("../controllers/restauranteController") //
     // Buscar todos os funcionários
     router.get("/restaurante/funcionarios", restauranteController.getAllFuncionarios)
 
+    // Buscar todos os pedidos
+    router.get("/restaurante/pedidos", restauranteController.getAllPedidos)
+
+    // // Buscar todos os cadastros
+    // router.get("/restaurante/cadastros", restauranteController.getAllCadastros)
+
 //.
 
 // // Rotas POST
