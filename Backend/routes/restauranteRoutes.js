@@ -7,11 +7,11 @@ const restauranteController = require("../controllers/restauranteController") //
     // Buscar todos os produtos
     router.get("/restaurante/produtos", restauranteController.getAllProdutos)
 
-    // // Buscar todos os clientes
-    // router.get("/restaurante/clientes", restauranteController.getAllClientes)
+    // Buscar todos os clientes
+    router.get("/restaurante/clientes", restauranteController.getAllClientes)
 
-    // // Buscar todos os funcionários
-    // router.get("/restaurante/funcionarios", restauranteController.getAllFuncionarios)
+    // Buscar todos os funcionários
+    router.get("/restaurante/funcionarios", restauranteController.getAllFuncionarios)
 
 //.
 
