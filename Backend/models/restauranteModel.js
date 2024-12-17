@@ -245,7 +245,7 @@ const { Request, TYPES } = require("tedious"); // Importa as classes necessária
     connection.connect() // Inicia a conexão
   }
 
-    // Criar Produto
+  // Criar Produto
   exports.createProduto = (data, callback) => {
     const connection = createConnection(); // Cria a conexão com o banco de dados
     connection.on("connect", (err) => {
@@ -268,5 +268,26 @@ const { Request, TYPES } = require("tedious"); // Importa as classes necessária
     connection.connect() // Inicia a conexão
   }
 
+  // Criar Cadastro
+  exports.createCadastro = (data, callback) => {
+    const connection = createConnection(); // Cria a conexão com o banco de dados
+    connection.on("connect", (err) => {
+      if (err) {
+        return callback(err, null) // Trata erros de conexão
+      } // Consulta SQL para inserir um novo Cadastro
+      const query = `INSERT INTO cadastros (nameuser, senha) VALUES (@nameuser, @senha)`;
+      const request = new Request(query, (err) => {
+        if (err) {
+          callback(err) // Chama a função callback com erro se houver falha
+        } else {
+          callback(null, { message: "Cadastro criado com sucesso!" })
+        }
+      }) // Adiciona os parâmetros necessários para a inserção
+      request.addParameter("nameuser", TYPES.VarChar, data.nameuser)
+      request.addParameter("senha", TYPES.NVarChar, data.senha)
+      connection.execSql(request) // Executa a consulta
+    })
+    connection.connect() // Inicia a conexão
+  }
 
   //.

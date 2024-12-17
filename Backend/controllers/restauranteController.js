@@ -97,4 +97,16 @@ const restauranteModel = require("../models/restauranteModel") // Importa o mode
     })
   }
 
+  // Função para criar um Cadastro
+  exports.createCadastro = (req, res) => {
+    const data = req.body // Extrai os dados do corpo da aquisição
+    restauranteModel.createCadastro(data, (err) => {
+      if (err) {
+        res.status(500).send("Erro ao criar Cadastro.") // Retorna um erro 500 se algo deu errado
+      } else {
+        res.status(201).send("Cadastro criado com sucesso!") // Retorna status 201 (criado) se bem-sucedido
+      }
+    })
+  }
+
 //.
