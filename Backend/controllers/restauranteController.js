@@ -73,16 +73,16 @@ const restauranteModel = require("../models/restauranteModel") // Importa o mode
     })
   }
 
-  // // Função para criar um cliente
-  // exports.createCliente = (req, res) => {
-  //   const data = req.body // Extrai os dados do corpo da aquisição
-  //   restauranteModel.createCliente(data, (err) => {
-  //   if (err) {
-  //       res.status(500).send("Erro ao criar Cliente.") // Retorna um erro 500 se algo deu errado
-  //   } else {
-  //       res.status(201).send("Cliente criado com sucesso!") // Retorna status 201 (criado) se bem-sucedido
-  //   }
-  //   })
-  // }
+  // Função para criar um cliente
+  exports.createCliente = (req, res) => {
+    const data = req.body // Extrai os dados do corpo da aquisição
+    restauranteModel.createCliente(data, (err) => {
+    if (err) {
+        res.status(500).send("Erro ao criar Cliente.") // Retorna um erro 500 se algo deu errado
+    } else {
+        res.status(201).send("Cliente criado com sucesso!") // Retorna status 201 (criado) se bem-sucedido
+    }
+    })
+  }
 
 //.
