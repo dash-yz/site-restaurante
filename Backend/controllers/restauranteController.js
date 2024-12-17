@@ -58,3 +58,55 @@ const restauranteModel = require("../models/restauranteModel") // Importa o mode
   }
 
 //.
+
+// POST
+
+  // Função para criar um pedido
+  exports.createPedido = (req, res) => {
+    const data = req.body // Extrai os dados do corpo da aquisição
+    restauranteModel.createPedido(data, (err) => {
+    if (err) {
+        res.status(500).send("Erro ao criar Pedido.") // Retorna um erro 500 se algo deu errado
+    } else {
+        res.status(201).send("Pedido criado com sucesso!") // Retorna status 201 (criado) se bem-sucedido
+    }
+    })
+  }
+
+  // Função para criar um cliente
+  exports.createCliente = (req, res) => {
+    const data = req.body // Extrai os dados do corpo da aquisição
+    restauranteModel.createCliente(data, (err) => {
+    if (err) {
+        res.status(500).send("Erro ao criar Cliente.") // Retorna um erro 500 se algo deu errado
+    } else {
+        res.status(201).send("Cliente criado com sucesso!") // Retorna status 201 (criado) se bem-sucedido
+    }
+    })
+  }
+
+  // Função para criar um Produto
+  exports.createProduto = (req, res) => {
+    const data = req.body // Extrai os dados do corpo da aquisição
+    restauranteModel.createProduto(data, (err) => {
+    if (err) {
+        res.status(500).send("Erro ao criar Produto.") // Retorna um erro 500 se algo deu errado
+    } else {
+        res.status(201).send("Produto criado com sucesso!") // Retorna status 201 (criado) se bem-sucedido
+    }
+    })
+  }
+
+  // Função para criar um Cadastro
+  exports.createCadastro = (req, res) => {
+    const data = req.body // Extrai os dados do corpo da aquisição
+    restauranteModel.createCadastro(data, (err) => {
+      if (err) {
+        res.status(500).send("Erro ao criar Cadastro.") // Retorna um erro 500 se algo deu errado
+      } else {
+        res.status(201).send("Cadastro criado com sucesso!") // Retorna status 201 (criado) se bem-sucedido
+      }
+    })
+  }
+
+//.
