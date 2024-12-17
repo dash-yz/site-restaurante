@@ -196,3 +196,53 @@ const { Request, TYPES } = require("tedious"); // Importa as classes necessária
   }
 
 //.
+
+// POST
+
+  // Criar pedido
+  exports.createPedido = (data, callback) => {
+    const connection = createConnection(); // Cria a conexão com o banco de dados
+    connection.on("connect", (err) => {
+      if (err) {
+        return callback(err, null) // Trata erros de conexão
+      } // Consulta SQL para inserir uma nova história
+      const query = `INSERT INTO pedidos (id_cliente, descricao) VALUES (@id_cliente, @descricao)`;
+      const request = new Request(query, (err) => {
+        if (err) {
+          callback(err) // Chama a função callback com erro se houver falha
+        } else {
+          callback(null, { message: "História inserida com sucesso!" })
+        }
+      }) // Adiciona os parâmetros necessários para a inserção
+      request.addParameter("id_cliente", TYPES.Int, data.id_cliente)
+      request.addParameter("descricao", TYPES.NVarChar, data.descricao)
+      connection.execSql(request) // Executa a consulta
+    })
+    connection.connect() // Inicia a conexão
+  }
+
+  // // Criar Cliente
+  // exports.createCliente = (data, callback) => {
+  //   const connection = createConnection(); // Cria a conexão com o banco de dados
+  //   connection.on("connect", (err) => {
+  //     if (err) {
+  //       return callback(err, null) // Trata erros de conexão
+  //     } // Consulta SQL para inserir uma nova história
+  //     const query = `INSERT INTO clientes (nome, endereco, telefone, id_cadastro) VALUES (@nome, @endereco, @telefone, @id_cadastro)`;
+  //     const request = new Request(query, (err) => {
+  //       if (err) {
+  //         callback(err) // Chama a função callback com erro se houver falha
+  //       } else {
+  //         callback(null, { message: "História inserida com sucesso!" })
+  //       }
+  //     }) // Adiciona os parâmetros necessários para a inserção
+  //     request.addParameter("nome", TYPES.VarChar, data.nome)
+  //     request.addParameter("endereco", TYPES.VarChar, data.endereco)
+  //     request.addParameter("telefone", TYPES.VarChar, data.telefone)
+  //     request.addParameter("id_cadastro", TYPES.Int, data.id_cadastro)
+  //     connection.execSql(request) // Executa a consulta
+  //   })
+  //   connection.connect() // Inicia a conexão
+  // }
+
+  //.

@@ -22,11 +22,11 @@ const restauranteController = require("../controllers/restauranteController") //
 //.
 
 // // Rotas POST
-//     // Criar pedido
-//     router.post('/restaurante/pedido', restauranteController.createPedido)
+    // Criar pedido
+    router.post('/restaurante/pedido', restauranteController.createPedido)
 
-//     // Criar Cliente
-//     router.post('/restaurante/cliente', restauranteController.createCliente)
+    // // Criar Cliente
+    // router.post('/restaurante/cliente', restauranteController.createCliente)
 
 //     // Criar Produto
 //     router.post('/restaurante/produto', restauranteController.createProduto)
