@@ -205,13 +205,13 @@ const { Request, TYPES } = require("tedious"); // Importa as classes necessária
     connection.on("connect", (err) => {
       if (err) {
         return callback(err, null) // Trata erros de conexão
-      } // Consulta SQL para inserir uma nova história
+      } // Consulta SQL para inserir um novo Pedido
       const query = `INSERT INTO pedidos (id_cliente, descricao) VALUES (@id_cliente, @descricao)`;
       const request = new Request(query, (err) => {
         if (err) {
           callback(err) // Chama a função callback com erro se houver falha
         } else {
-          callback(null, { message: "História inserida com sucesso!" })
+          callback(null, { message: "Pedido criado com sucesso!" })
         }
       }) // Adiciona os parâmetros necessários para a inserção
       request.addParameter("id_cliente", TYPES.Int, data.id_cliente)
@@ -227,13 +227,13 @@ const { Request, TYPES } = require("tedious"); // Importa as classes necessária
     connection.on("connect", (err) => {
       if (err) {
         return callback(err, null) // Trata erros de conexão
-      } // Consulta SQL para inserir uma nova história
+      } // Consulta SQL para inserir um novo Cliente
       const query = `INSERT INTO clientes (nome, endereco, telefone, id_cadastro) VALUES (@nome, @endereco, @telefone, @id_cadastro)`;
       const request = new Request(query, (err) => {
         if (err) {
           callback(err) // Chama a função callback com erro se houver falha
         } else {
-          callback(null, { message: "História inserida com sucesso!" })
+          callback(null, { message: "Cliente inserido com sucesso!" })
         }
       }) // Adiciona os parâmetros necessários para a inserção
       request.addParameter("nome", TYPES.VarChar, data.nome)
@@ -244,5 +244,29 @@ const { Request, TYPES } = require("tedious"); // Importa as classes necessária
     })
     connection.connect() // Inicia a conexão
   }
+
+    // Criar Produto
+  exports.createProduto = (data, callback) => {
+    const connection = createConnection(); // Cria a conexão com o banco de dados
+    connection.on("connect", (err) => {
+      if (err) {
+        return callback(err, null) // Trata erros de conexão
+      } // Consulta SQL para inserir um novo Produto
+      const query = `INSERT INTO produtos (nome, categoria, descricao) VALUES (@nome, @categoria, @descricao)`;
+      const request = new Request(query, (err) => {
+        if (err) {
+          callback(err) // Chama a função callback com erro se houver falha
+        } else {
+          callback(null, { message: "Produto inserido com sucesso!" })
+        }
+      }) // Adiciona os parâmetros necessários para a inserção
+      request.addParameter("nome", TYPES.VarChar, data.nome)
+      request.addParameter("categoria", TYPES.VarChar, data.categoria)
+      request.addParameter("descricao", TYPES.NVarChar, data.descricao)
+      connection.execSql(request) // Executa a consulta
+    })
+    connection.connect() // Inicia a conexão
+  }
+
 
   //.

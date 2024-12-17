@@ -28,8 +28,11 @@ const restauranteController = require("../controllers/restauranteController") //
     // Criar Cliente
     router.post('/restaurante/cliente', restauranteController.createCliente)
 
-//     // Criar Produto
-//     router.post('/restaurante/produto', restauranteController.createProduto)
+    // Criar Produto
+    router.post('/restaurante/produto', restauranteController.createProduto)
+
+    // Criar Cadastro
+    // router.post('/restaurante/cadastro', restauranteController.createCadastro)
 
 //.
 
