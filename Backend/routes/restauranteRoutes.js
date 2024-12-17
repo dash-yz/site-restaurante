@@ -21,7 +21,7 @@ const restauranteController = require("../controllers/restauranteController") //
 
 //.
 
-// // Rotas POST
+// Rotas POST
     // Criar pedido
     router.post('/restaurante/pedido', restauranteController.createPedido)
 
